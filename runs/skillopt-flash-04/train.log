@@ -1,0 +1,79 @@
+
+============================================================
+  SkillOpt — Executive Strategy for Self-Evolving Agent Skills
+============================================================
+  env:            incidentrca
+  optimizer_model:  deepseek-v4-flash
+  target_model:  deepseek-v4-flash
+  optimizer_backend:openai_compatible
+  target_backend:openai_compatible
+  reasoning:      medium
+  rewrite_effort: off
+  epochs:         2
+  train_size:     from dataset
+  steps/epoch:    auto
+  batch_size:     4
+  edit_budget:    4
+  lr_scheduler:   constant
+  update_mode:    patch
+  min_edit_budget:2
+  minibatch_size: 4
+  seed:           42
+  meta_skill:     False
+  skill_aware_reflection: False
+  slow_update:    False
+  out_root:       C:\Users\ThomasBray\src\MTG-Thomas\skillfactory\runs\skillopt-flash-04
+============================================================
+
+  [IncidentRCALoader] train=4 val=2 test=0  (from C:/Users/ThomasBray/src/MTG-Thomas/skillfactory/skillopt-env/split)
+  [model config] backend=azure_openai  optimizer=deepseek-v4-flash (openai_compatible)  target=deepseek-v4-flash (openai_compatible)  reasoning=medium
+  [initial skill] C:\Users\ThomasBray\.codex\skills\lightweight-incident-rca\SKILL.md (2457 chars)
+
+  [config] epochs=2 steps/epoch=1 (auto) accum=1 batch_size=4
+  [config] train_size=4
+  [config] batches/epoch=1 total_steps=2 games/epoch=4
+  [config] lr_scheduler=constant edit_budget=4 min_edit_budget=2
+  [config] skill_update_mode=patch lr_control_mode=fixed rewrite_reasoning_effort=off rewrite_max_completion_tokens=64000
+  [config] longitudinal_pair_policy=mixed
+  [config] base_seeds=[43]
+  [gate] metric=hard
+  [slow update] acceptance=force-accept (unconditional)
+
+============================================================
+  BASELINE — evaluate initial skill on Selection set (valid_seen)
+============================================================
+  Selection items: 2
+  [baseline result] selection hard=0.5000 soft=0.9615 gate[hard]=0.5000
+
+  [EPOCH 1/2] shuffled_seeds=[1043]
+
+  [STEP 1/2] epoch=1 step_in_epoch=0 ==============================
+    [1/6 ROLLOUT] train items=4 (from pool, batch_seed=1043)
+    [1/6 done] hard=1.0000 soft=1.0000
+    [2/6 REFLECT minibatch] failure=0→0 groups  success=4→1 groups  (M=4, L=4, workers=4)
+      [analyst] 1/1 minibatch_succ_000 (4 trajs) → 0 edits
+    [2/6 done] failure_patches=0 success_patches=0
+    [skip] no usable patches — skill unchanged
+
+  [EPOCH 2/2] shuffled_seeds=[2043]
+
+  [STEP 2/2] epoch=2 step_in_epoch=0 ==============================
+    [1/6 ROLLOUT] train items=4 (from pool, batch_seed=2043)
+    [1/6 done] hard=1.0000 soft=1.0000
+    [2/6 REFLECT minibatch] failure=0→0 groups  success=4→1 groups  (M=4, L=4, workers=4)
+      [analyst] 1/1 minibatch_succ_000 (4 trajs) → 0 edits
+    [2/6 done] failure_patches=0 success_patches=0
+    [skip] no usable patches — skill unchanged
+
+  [done] best skill from step 0, score=0.5000
+
+============================================================
+  Final Summary
+============================================================
+  steps=2 accept=0 reject=0 skip=2
+  best_score=0.5000 (step 0)  wall=123s
+    epoch 1: accept=0 reject=0 best=0.5000
+    epoch 2: accept=0 reject=0 best=0.5000
+  total tokens: 35,873 (prompt=8,378 completion=27,495 calls=10)
+
+  Output saved to: C:\Users\ThomasBray\src\MTG-Thomas\skillfactory\runs\skillopt-flash-04

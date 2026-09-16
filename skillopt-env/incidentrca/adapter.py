@@ -76,10 +76,18 @@ class IncidentRCAAdapter(EnvAdapter):
         limit: int = 0,
         workers: int = 4,
         max_completion_tokens: int = 2048,
+        analyst_workers: int = 4,
+        failure_only: bool = False,
+        minibatch_size: int = 8,
+        edit_budget: int = 4,
         **kwargs,
     ) -> None:
         self.workers = workers
         self.max_completion_tokens = int(max_completion_tokens)
+        self.analyst_workers = analyst_workers
+        self.failure_only = failure_only
+        self.minibatch_size = minibatch_size
+        self.edit_budget = edit_budget
         self.dataloader = IncidentRCALoader(
             split_dir=split_dir,
             data_path=data_path,

@@ -1,2 +1,4 @@
 runs/20260916-proof01/t-*/
 tmp-upstream/
+skillopt-env/split/
+__pycache__/
