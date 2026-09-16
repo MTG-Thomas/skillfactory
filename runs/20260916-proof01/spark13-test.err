@@ -1,0 +1,7 @@
+Error: OpenAI-compatible chat request failed
+  endpoint: https://opencode.ai/zen/go/v1/chat/completions
+  model: muse-spark-1.3
+  auth: OPENCODE_GO_API_KEY
+  status: 401 Unauthorized
+  response: {"type":"error","error":{"type":"ModelError","message":"Model muse-spark-1.3 is not supported"}}
+Hint: check network connectivity, DNS/TLS, that the base URL includes the API version (usually /v1), and that the model exists on the provider.
