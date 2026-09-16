@@ -1,0 +1,11 @@
+skill: lightweight-incident-rca
+corpus:
+  train: ./corpora/lightweight-incident-rca/train
+  validation: ./corpora/lightweight-incident-rca/validation
+targets:
+  - harness: jcode
+    model: muse-spark-1.3-contributor
+  - harness: codex
+    model: configured
+trials: 3
+evaluators: [deterministic, skill-lift, llm-judge]
